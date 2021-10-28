@@ -4,10 +4,11 @@
 
 @section("contenido")
 <a href="{{route('centros.create')}}" class="btn btn-success">+ Insertar</a>
+<a href="{{route('centros.pdf')}}" class="btn btn-warning">Generar PDF</a>
 <h1>Centros</h1>
 <table id="tabla">
 	<thead>
-		<tr><th>Codigo</th><th>Nombre</th><th>Ciudad</th><th>Isla</th><th></th><th></th></tr>
+		<tr><th>Codigo</th><th>Nombre</th><th>Ciudad</th><th>Isla</th><th></th><th></th><th></th></tr>
 	</thead>
 	<tbody>
 	@foreach($centros as $centro)
@@ -18,7 +19,11 @@
 			<td>{{$centro->Isla}}</td>
 			<td><img class='btn_borrar' width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png"></td>
 			<td><a href='{{url("centros/$centro->id/edit")}}'><img class='btn_editar' width="32px" src="https://freepngimg.com/download/pencil/37514-6-pencil-icon.png"></a></td>
-		</tr>
+
+		<td><a href='{{url("centros/qr")}}/{{$centro->uuid}}'><img class='btn_qr' width="32px" src="https://img2.freepng.es/20180509/pce/kisspng-qr-code-computer-icons-barcode-2d-code-qr-codea4-5af2f189b87573.2392149115258709857556.jpg"></a></td>
+					</tr>
+		
+		
 	@endforeach
 	</tbody>	
 </table>

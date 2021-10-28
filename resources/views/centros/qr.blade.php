@@ -1,0 +1,1 @@
+{{QrCode::size(100)->generate('MyNotePaper')}}

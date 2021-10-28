@@ -3,7 +3,7 @@
 
 @section("contenido")
 
-	<h3>Formulario para insertar</h3>
+	<h3>Formulario para @if (isset($centro)) actualizar @else insertar @endif</h3>
 
 <form method="POST" action="{{isset($centro)?route("centros.update",[$centro->id]):route("centros.store")}}">
   <div class="form-group">
@@ -31,7 +31,8 @@
 	@if (isset($centro))
 		<input type="hidden" name="_method" value="PUT">
 	@endif
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <button type="submit" class="btn btn-primary">{{isset($centro)? 'Actualizar':'Insertar'}}</button>
+  <a href="{{route('centros.index')}}" class="btn btn-secondary">Volver</a>
 </form>
 
 
