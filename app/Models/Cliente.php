@@ -11,4 +11,17 @@ class Cliente extends Model
 	
 	protected $guarded=["id"];
 	
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
+
+    public function getContactoAttribute($value)
+    {
+        return "Mr $value";
+    }
+
+
+
 }

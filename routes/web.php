@@ -15,6 +15,13 @@ use App\Http\Controllers\CentroController;
 |
 */ 
 
+
+Route::get('/hola', function() {
+    return '<h1>hola</h1>';
+});
+
+
+
 Route::get("centros/qr/{centro}",[CentroController::class, 'qr'])->name("centros.qr");
 Route::get("centros/pdf",[CentroController::class, 'listadoPdf'])->name("centros.pdf");
 Route::resource('centros', 'App\Http\Controllers\CentroController')->middleware("auth");
