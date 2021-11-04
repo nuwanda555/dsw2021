@@ -1,4 +1,4 @@
-    
+
     <style>
         body {
             padding: 40px;
@@ -10,8 +10,8 @@
             height: 75%;
         }
     </style>
-    
-    
+
+
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=ArEa1rgs3SfHTJuvTNbDDAYLVTlQfCHeTUu5bbRlwU6DuTR5YvBT3MkYqCkaPGYR' defer></script>
 
@@ -20,6 +20,7 @@
 
 
        function localizar() {
+
             if ("geolocation" in navigator){
 
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -36,7 +37,7 @@
        }
 
 
-   
+
     </script>
 
 
@@ -58,9 +59,9 @@
               localizar();
           }
       </script>
-       
+
       <html>
         <div id='mapDiv' style="position:relative;"></div>
       </html>
-      
+
 </div>

@@ -1,7 +1,8 @@
-    
+
     <style>
         body {
-            padding: 40px;
+            padding: 60px;
+            border: 4px solid orange;
         }
 
         th {
@@ -12,13 +13,13 @@
             font-size: 20px;
         }
     </style>
-    
-    
+
+
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    
-    
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -51,7 +52,7 @@
                    }
                 }
             });
-       } 
+       }
 
 
        function mostrarTabla(){
@@ -82,7 +83,6 @@
                 console.log(errorMessage);
               });
        }
-
 
        $(document).ready(function(){
 
@@ -123,7 +123,7 @@
                 e.preventDefault();
                 const email=$("#email").val();
                 const password=$("#password").val();
-                       
+
                 //Create User with Email and Password
                 firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
                 // Handle Errors here.
@@ -137,7 +137,7 @@
             $("#btn_acceder").click(function(e){
                 e.preventDefault();
                 const email=$("#email").val();
-                const password=$("#password").val();  
+                const password=$("#password").val();
                 acceder(email,password);
             });
 
