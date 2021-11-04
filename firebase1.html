@@ -16,6 +16,9 @@
     
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -67,9 +70,75 @@
             });
        }
 
+
+       function acceder(email, password){
+            //Sign In User with Email and Password
+              firebase.auth().signInWithEmailAndPassword(email, password)
+              .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode);
+                console.log(errorMessage);
+              });
+       }
+
+
        $(document).ready(function(){
+
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) { //si estoy autenticado
+                    $("#btn_logout").css("display","inline-block");
+                    $("#formulario").css("display","none");
+                    $("#btn_acceder").css("display","none");
+                    $("#btn_crear").css("display","none")
+                    mostrarTabla();
+                } else {
+                    $("#div_tabla").html(""); //borro la tabla
+                    $("#btn_logout").css("display","none");
+                    $("#formulario").css("display","inline-block");
+                    $("#btn_acceder").css("display","inline-block");
+                    $("#btn_crear").css("display","inline-block");
+                }
+            });
+
+
             $("#btn_clientes").click(function(){
                 cargarClientes();
+            });
+
+            $("#btn_logout").click(function(){
+                firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+                console.log('User Logged Out!');
+                }).catch(function(error) {
+                // An error happened.
+                console.log(error);
+                });
+                mostrarTabla();
+
+            });
+
+            $("#btn_crear").click(function(e){
+                e.preventDefault();
+                const email=$("#email").val();
+                const password=$("#password").val();
+                       
+                //Create User with Email and Password
+                firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode);
+                console.log(errorMessage);
+                });
+            })
+
+            $("#btn_acceder").click(function(e){
+                e.preventDefault();
+                const email=$("#email").val();
+                const password=$("#password").val();  
+                acceder(email,password);
             });
 
             $("#div_tabla").on("click",".btn_borrar",function(){
@@ -85,7 +154,21 @@
 
 
 <div class="container">
-    <button id="btn_clientes" class="mb-2 btn btn-success">Cargar clientes desde Mysql</button>
+    <div id="formulario">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+    </div>
+    <button type="submit" id="btn_acceder" class="btn btn-primary">Acceder</button>
+    <button type="submit" id="btn_crear" class="btn btn-success">Crear usuario</button>
+    <button type="submit" id="btn_logout" class="btn btn-warning">Salir</button>
+
+    <button id="btn_clientes" class="btn btn-success">Cargar clientes desde Mysql</button>
 
     <div id="div_tabla">
 

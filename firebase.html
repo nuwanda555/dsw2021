@@ -1,0 +1,26 @@
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp, getDatabase, ref } from "https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjFX2SrHEH9YqXjxxe9wNUiBTBUhkglfQ",
+      authDomain: "dsw2021-2c721.firebaseapp.com",
+      databaseURL: "https://dsw2021-2c721-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dsw2021-2c721",
+      storageBucket: "dsw2021-2c721.appspot.com",
+      messagingSenderId: "129571363638",
+      appId: "1:129571363638:web:529e3011179759b1487197"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app) // <-- Pass in the initialized app
+
+    db.ref("/alumnos/").set({"hola" : "adiops"});
+
+
+  </script>

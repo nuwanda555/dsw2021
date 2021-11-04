@@ -30,7 +30,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="pedidos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -60,11 +60,15 @@
             $.ajax({
                 url    : "{{url('/pedidos/listado')}}/"+clienteId,
                 success: function(datos){
+					console.log(datos)
+					let htmlTable="<table class='table table-bordered table-striped'>";
+					htmlTable+="<tr><th>Id</th><th>F.Pedido</th><th>Días</th><th>Destinatario</th><th>Cargo</th></tr>"
                     $("#modal_body").html("");
                     for(let i=0;i<datos.length;i++){
-                        $("#modal_body").append(datos[i].fecha_pedido+"<br>");
+						htmlTable+=`<tr><td>${datos[i].id}</td><td>${datos[i].fecha_pedido}</td><td>${datos[i].dias}</td><td>${datos[i].destinatario}</td><td>${datos[i].cargo}</td></tr>`;
                     }
-                    
+					htmlTable+="</table>";
+                    $("#modal_body").append(htmlTable);
                     $("#pedidos_modal").modal();
 
 
